@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: smadie <smadie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/11 07:34:37 by bvirgini          #+#    #+#             */
-/*   Updated: 2021/12/26 06:06:39 by smadie           ###   ########.fr       */
+/*   Created: 2021/12/11 07:34:37 by smadie            #+#    #+#             */
+/*   Updated: 2021/12/26 21:21:27 by smadie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ int	load_map(t_var var, int row, int col)
 	else if (var.map.mtx[row][col] == 'P')
 		var.img.img_ptr = mlx_xpm_file_to_image(var.mlx, var.img.spt_path,
 				&var.img.size.x, &var.img.size.y);
-	// else if (var.map.mtx[row][col] == 'Y' && var.has_enemy > 0)
-	// 	enemy_animation(&var);
+	else if (var.map.mtx[row][col] == 'Y' && var.has_enemy > 0)
+		enemy_animation(&var);
 	mlx_put_image_to_window(var.mlx, var.win, var.img.img_ptr, SPRITE_W * col,
 		SPRITE_H * row);
 	mlx_destroy_image(var.mlx, var.img.img_ptr);

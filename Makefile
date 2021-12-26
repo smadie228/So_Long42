@@ -1,14 +1,34 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: smadie <smadie@student.42.fr>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/12/26 21:22:38 by smadie            #+#    #+#              #
+#    Updated: 2021/12/26 21:22:41 by smadie           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME		= so_long
 CC			= clang
-SRCS		=	srcs/maps.c\
-				srcs/so_long.c\
+SRCS		=	GNL/ft_gnl.c \
+				GNL/ft_strcpy_gnl.c \
+				LIBFT/ft_itoa.c \
+				LIBFT/ft_strlen.c \
+				LIBFT/ft_strstr.c \
+				LIBFT/ft_count_digit.c\
+				srcs/animation.c \
+				srcs/enemy_move.c \
+				srcs/enemy.c \
+				srcs/error.c \
+				srcs/free_map.c\
+				srcs/game.c \
+				srcs/key_manager.c \
+				srcs/maps.c \
+				srcs/movements.c\
+				srcs/so_long.c \
 				srcs/validate_map.c\
-				srcs/ft_strlen.c\
-				srcs/error.c\
-				srcs/ft_strstr.c\
-				GNL/ft_gnl.c\
-				GNL/ft_strcpy_gnl.c\
-
 
 CFLAGS		= -Wall -Wextra -Werror
 MLXFLAGS	= -L ./minilibx/ -lmlx -framework OpenGl -framework AppKit -lz

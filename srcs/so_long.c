@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: smadie <smadie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/11 07:38:46 by bvirgini          #+#    #+#             */
-/*   Updated: 2021/12/26 06:08:13 by smadie           ###   ########.fr       */
+/*   Created: 2021/12/11 07:38:46 by smadie            #+#    #+#             */
+/*   Updated: 2021/12/26 21:21:48 by smadie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ int	init(t_var *var)
 {
 	var->map.mtx = malloc((var->map.size.y + 1) * sizeof(char *));
 	var->map.mtx[var->map.size.y] = NULL;
-	// var->game.count_steps = 0;
-	// var->game.count_enemy = 0;
-	// var->enemy.pos.x = 0;
-	// var->enemy.pos.y = 0;
-	// var->has_enemy = 0;
+	var->game.count_steps = 0;
+	var->game.count_enemy = 0;
+	var->enemy.pos.x = 0;
+	var->enemy.pos.y = 0;
+	var->has_enemy = 0;
 	var->img.spt_path = "./img/sprite.xpm";
 	return (0);
 }
@@ -38,6 +38,12 @@ Ex: ./so_long maps/map.ber");
 	return (0);
 }
 
+int	ft_expose(t_var *var)
+{
+	print_map(*var);
+	print_steps(var);
+	return (0);
+}
 
 int	main(int argc, char **argv)
 {
@@ -50,6 +56,14 @@ int	main(int argc, char **argv)
 	var.mlx = mlx_init();
 	var.win = mlx_new_window(var.mlx, var.map.size.x * SPRITE_W, var.map.size.y
 			* SPRITE_H, "So long");
+	get_init_position(&var);
+	check_enemy(&var);
+	count_collec(&var);
 	print_map(var);
+	mlx_hook(var.win, X_EVENT_KEY_PRESS, 1L << 0, key_press, &var);
+	mlx_hook(var.win, X_EVENT_KEY_EXIT, 1L << 0, mlx_close, &var);
+	mlx_expose_hook(var.win, ft_expose, &var);
+	if (var.has_enemy > 0)
+		mlx_loop_hook(var.mlx, enemy_patrol, &var);
 	mlx_loop(var.mlx);
 }
